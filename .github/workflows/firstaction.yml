@@ -6,6 +6,9 @@ jobs:
     first_job:
         runs-on: ubuntu-latest
         steps:
+            - name: Add Checkout Repo
+              uses: actions/checkout@v6
+              
             - name: Welcome Actions
               run: echo "Actions Test Run"
 

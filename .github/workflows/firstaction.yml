@@ -3,7 +3,7 @@ name: Actions1 Workflow
 on: push
 
 jobs:
-    first_job:
+    ascii_job:
         runs-on: ubuntu-latest
         steps:
             - name: Add Checkout Repo
@@ -15,8 +15,17 @@ jobs:
                 ls -ltra
                 cat README.md
 
+            - name : Install Cowsay CLI
+              run: sudo apt-get install cowsay -y
+
             - name: ASCII Artwork
               run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt 
+
+            - name: Check File Exists
+              run: grep -i "dragon" dragon.txt
+
+            - name: Read File
+              run: cat dragon.txt
 
             #- name: List Files
             # run: ls

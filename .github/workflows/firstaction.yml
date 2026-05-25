@@ -8,13 +8,19 @@ jobs:
         steps:
             - name: Add Checkout Repo
               uses: actions/checkout@v6
-              
-            - name: Welcome Actions
-              run: echo "Actions Test Run"
 
-            - name: List Files
-              run: ls
+            - name: List and Read Files
+              run: |
+                echo "Actions Test Run"
+                ls -ltra
+                cat README.md
 
-            - name: Read File
-              run: cat README.md
+            - name: ASCII Artwork
+              run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt 
+
+            #- name: List Files
+            # run: ls
+
+            #- name: Read File
+            # run: cat README.md
         

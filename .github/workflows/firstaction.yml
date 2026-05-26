@@ -12,15 +12,20 @@ jobs:
       - name: Run Cowsay
         run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt
 
-      - name: Sleep
-        run: sleep 30
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dragon-artifact
+          path: dragon.txt
 
   test_job_2:
     needs: build_job_1
     runs-on: ubuntu-latest
     steps: 
-      - name: sleep 10
-        run: sleep 10
+      - name: Download Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dragon-artifact
 
       - name: Check dragon
         run: grep -i "dragon" dragon.txt
@@ -29,6 +34,11 @@ jobs:
     needs: [build_job_1, test_job_2]
     runs-on: ubuntu-latest
     steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dragon-artifact
+          
       - name: Read File
         run: cat dragon.txt
       

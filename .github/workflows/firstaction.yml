@@ -12,8 +12,8 @@ jobs:
       - name: Run Cowsay for Dragon
         run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt
       
-      - name: Run Cowsay for Cow
-        run: cowsay -f cow "Cow check......dscdww" >> cow.txt
+      - name: Run Cowsay for Vader
+        run: cowsay -f vader "The Force is strong with this one." >> vader.txt
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
@@ -21,7 +21,7 @@ jobs:
           name: dragon-artifact
           path: |
             dragon.txt
-            cow.txt
+            vader.txt
 
   test_job_2:
     needs: build_job_1
@@ -35,8 +35,8 @@ jobs:
       - name: Check dragon
         run: grep -i "dragon" dragon.txt
 
-      - name: Check cow
-        run: grep -i "cow" cow.txt
+      - name: Check vader
+        run: grep -i "force" vader.txt
     
   deploy_job_3:
     needs: [build_job_1, test_job_2]
@@ -50,8 +50,8 @@ jobs:
       - name: Read File Dragon
         run: cat dragon.txt
 
-      - name: Read File Cow
-        run: cat cow.txt
+      - name: Read File Vader
+        run: cat vader.txt
       
       - name: Deploy File
         run: echo Deploying.......

@@ -9,14 +9,19 @@ jobs:
       - name: Install Cowsay
         run: sudo apt-get install cowsay -y
 
-      - name: Run Cowsay
+      - name: Run Cowsay for Dragon
         run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt
+      
+      - name: Run Cowsay for Dragon
+        run: cowsay -f cow "Cow check......dscdww" >> cow.txt
 
-      - name: Upload Artifact
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v7
         with:
           name: dragon-artifact
-          path: dragon.txt
+          path: |
+            dragon.txt
+            cow.txt
 
   test_job_2:
     needs: build_job_1
@@ -29,6 +34,9 @@ jobs:
 
       - name: Check dragon
         run: grep -i "dragon" dragon.txt
+
+      - name: Check cow
+        run: grep -i "cow" cow.txt
     
   deploy_job_3:
     needs: [build_job_1, test_job_2]
@@ -38,9 +46,12 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: dragon-artifact
-          
+
       - name: Read File
         run: cat dragon.txt
+
+      - name: Read File
+        run: cat cow.txt
       
       - name: Deploy File
         run: echo Deploying.......

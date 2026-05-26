@@ -12,7 +12,7 @@ jobs:
       - name: Run Cowsay for Dragon
         run: cowsay -f dragon "Dragon check......dscdww" >> dragon.txt
       
-      - name: Run Cowsay for Dragon
+      - name: Run Cowsay for Cow
         run: cowsay -f cow "Cow check......dscdww" >> cow.txt
 
       - name: Upload Artifacts
@@ -47,10 +47,10 @@ jobs:
         with:
           name: dragon-artifact
 
-      - name: Read File
+      - name: Read File Dragon
         run: cat dragon.txt
 
-      - name: Read File
+      - name: Read File Cow
         run: cat cow.txt
       
       - name: Deploy File
